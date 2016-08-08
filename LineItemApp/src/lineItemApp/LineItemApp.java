@@ -24,15 +24,23 @@ public class LineItemApp {
 				
 				//set product price based on product code
 				double price;
+				String description = "";
 				if (productCode.equalsIgnoreCase("java") ) {
 					price = 57.50;
+					description = "Grand Circus Java Programming";
 				}//end if-statement
 				else if(productCode.equalsIgnoreCase("jsp") ) {
 					price = 57.50;
+					description = "Grand Circus JSP Programming";
 				}//end else-if statement
 				else if(productCode.equalsIgnoreCase("mysql")) {
 					price = 54.50;
-				}//end else-if statment
+					description = "Grand Circus MySQL Programming";
+				}//end else-if statement
+				else if(productCode.equalsIgnoreCase("android")) {
+					price = 50.50;
+					description = "Grand Circus Android Programming";
+				}//end else-if statement
 				else {
 					price = 0;
 				}//end else-statement
@@ -42,13 +50,12 @@ public class LineItemApp {
 				
 				//format and display output
 				NumberFormat currency = NumberFormat.getCurrencyInstance();
-				String priceFormatted = currency.format(price);
-				String totalFormatted = currency.format(total);
 				String message = "\nLINE ITEME\n" +
-						"Code:       " + productCode + "\n" +
-						"Price:      " + priceFormatted + "\n" +
-						"Quantity:   " + quantity + "\n" + 
-						"Total:      " + totalFormatted + "\n";
+						"Code:        " + productCode + "\n" +
+						"Description: " + description + "\n" +
+						"Price:       " + currency.format(price) + "\n" +
+						"Quantity:    " + quantity + "\n" + 
+						"Total:       " + currency.format(total) + "\n";
 				System.out.println(message);
 				
 				//see if the user wants to continue
