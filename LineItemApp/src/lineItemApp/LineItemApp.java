@@ -1,16 +1,15 @@
 package lineItemApp;
 
-//Line Item App from p. 89 of Murach java
-
-import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class LineItemApp {
 
 		public static void main (String [] args) {
+			//display welcome message
 			System.out.println("Welcome to the Line Item Calculator");
 			System.out.println();
 			
+			//create 1 or more line items
 			Scanner scan = new Scanner(System.in);
 			String choice = "y";
 			
@@ -22,40 +21,19 @@ public class LineItemApp {
 				System.out.println("Enter quantity: ");
 				int quantity = Integer.parseInt(scan.nextLine());
 				
-				//set product price based on product code
-				double price;
-				String description = "";
-				if (productCode.equalsIgnoreCase("java") ) {
-					price = 57.50;
-					description = "Grand Circus Java Programming";
-				}//end if-statement
-				else if(productCode.equalsIgnoreCase("jsp") ) {
-					price = 57.50;
-					description = "Grand Circus JSP Programming";
-				}//end else-if statement
-				else if(productCode.equalsIgnoreCase("mysql")) {
-					price = 54.50;
-					description = "Grand Circus MySQL Programming";
-				}//end else-if statement
-				else if(productCode.equalsIgnoreCase("android")) {
-					price = 50.50;
-					description = "Grand Circus Android Programming";
-				}//end else-if statement
-				else {
-					price = 0;
-				}//end else-statement
+				//get the Product object
+				Product product = ProductDB.getProduct(productCode);
 				
-				//calculate total
-				double total = price * quantity;
+				//create the LineItem object
+				LineItem lineItem = new LineItem(product, quantity);
 				
 				//format and display output
-				NumberFormat currency = NumberFormat.getCurrencyInstance();
 				String message = "\nLINE ITEME\n" +
-						"Code:        " + productCode + "\n" +
-						"Description: " + description + "\n" +
-						"Price:       " + currency.format(price) + "\n" +
-						"Quantity:    " + quantity + "\n" + 
-						"Total:       " + currency.format(total) + "\n";
+						"Code:        " + product.getCode() + "\n" +
+						"Description: " + product.getDescription() + "\n" +
+						"Price:       " + product.getPriceFormatted() + "\n" +
+						"Quantity:    " + lineItem.getQuantity() + "\n" + 
+						"Total:       " + lineItem.getTotalFormatted() + "\n";
 				System.out.println(message);
 				
 				//see if the user wants to continue
