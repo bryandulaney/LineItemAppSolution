@@ -7,7 +7,7 @@ public class Product {
 	//the instance variables
 	private String code;
 	private String description;
-	private double price;
+	private float price;
 	
 	//the constructor
 	public Product() {
@@ -35,11 +35,11 @@ public class Product {
 	}//close getDescription() method
 	
 	//the set and get methods for the price variable
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}//close setPrice() method
 	
-	public double getPrice() {
+	public float getPrice() {
 		return price;
 	}//close getPrice() method
 	
